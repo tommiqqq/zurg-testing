@@ -8,9 +8,9 @@ services:
     ports:
       - 9999:9999
     volumes:
-      - ./scripts/plex_update.sh:/app/plex_update.sh
-      - ./config.yml:/app/config.yml
-      - zurgdata:/app/data
+      - /mnt/data/supervisor/addon_configs/zurg/scripts/plex_update.sh:/app/plex_update.sh
+      - /mnt/data/supervisor/addon_configs/zurg/config.yml:/app/config.yml
+      - zurgdata:/mnt/data/supervisor/addon_configs/zurg/data
 
   rclone:
     image: rclone/rclone:latest
@@ -21,7 +21,7 @@ services:
       PUID: 1000
       PGID: 1000
     volumes:
-      - /mnt/zurg:/data:rshared # CHANGE /mnt/zurg WITH YOUR PREFERRED MOUNT PATH
+      - /mnt/data/supervisor/addon_configs/zurg:/data:rshared # CHANGE /mnt/zurg WITH YOUR PREFERRED MOUNT PATH
       - ./rclone.conf:/config/rclone/rclone.conf
     cap_add:
       - SYS_ADMIN
